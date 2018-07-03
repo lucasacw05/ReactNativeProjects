@@ -4,7 +4,8 @@ import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 export default class App extends React.Component {
 
   state = {
-    placeName: ""
+    placeName: "",
+    places: []
   };
 
   placeNameChangedHandler = value => {
@@ -13,7 +14,24 @@ export default class App extends React.Component {
     });
   };
 
+  placeSubmitHandler = () => {
+    if (this.state.placeName.trim() === "") {
+      return;
+    }
+
+    this.setState(prevState => {
+      return {
+        places: prevState.places.concat(prevState.placeName)
+      };
+    });
+  };
+
   render() {
+
+    const placesOutput = this.state.places.map(place => (
+      <Text>{place}</Text>
+    ));
+
     return (
       <View style={styles.container}>
         <View style={styles.inputContainer}>
@@ -26,8 +44,10 @@ export default class App extends React.Component {
         <Button
           style={styles.placeButton}
           title="add"
+          onPress={this.placeSubmitHandler}
         />
         </View>
+        <View>{placesOutput}</View>
       </View>
     );
   }
