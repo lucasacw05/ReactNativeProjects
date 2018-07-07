@@ -3,7 +3,9 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 
 
 let gerarNumeroAleatorio = () => {
-  alert("Teste")
+  let numeroAleatorio = Math.random() * 10;
+  let numeroAleatorioFloor = Math.floor(numeroAleatorio);
+  alert(numeroAleatorioFloor);
 }
 export default class App extends React.Component {
   render() {
