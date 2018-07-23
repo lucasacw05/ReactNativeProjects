@@ -1,23 +1,27 @@
-import React, { Component } from 'react';
-import { View } from 'react-native';
-import Item from '../../src/components/Item';
 import axios from 'axios';
+import React, { Component } from 'react';
+import { ScrollView } from 'react-native';
+import Item from '../../src/components/Item';
+
 
 export default class ItemList extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { itemList: [] };
+  }
 
   componentWillMount() {
     axios.get('http://faus.com.br/recursos/c/dmairr/api/itens.html')
-        .then(response => { console.log(response); })
+        .then(response => { this.setState({ itemList: response.data }); })
         .catch(() => { console.log('Erro na execução'); });
   }
 
   render() {
     return (
-      <View>
-        <Item />
-        <Item />
-        <Item />
-      </View>
+      <ScrollView>
+        { this.state.itemList.map(item => (<Item key={item.titulo} item={item} />)) }
+      </ScrollView>
     );
   }
 }
