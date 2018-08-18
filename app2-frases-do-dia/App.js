@@ -11,7 +11,7 @@ const buttonPressed = () => {
   phrases[1] = 'Frase 2';
   phrases[2] = 'Frase 3';
   phrases[3] = 'Frase 4';
-  phrases[4] = 'Frase 5';
+  phrases[4] = 'Frase 5'
 
   let chosenPhrase = phrases[randomNumber];
 
